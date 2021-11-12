@@ -8,131 +8,6 @@
     <style>
     </style>
   </head>
-  <script>
-    var VerfiTab = new Array(0,0,0,0,0,0,0,0,0);
-    var cases = document.getElementsByTagName("td");
-    var partieFini =0;
-    function Init(){
- 
-          for (var i=0; i<cases.length; i++){
-              cases[i].addEventListener("onclick", tour(i))
-        }
-          testVainqueur();
-        
-    }
-    function getRandomInt() {
-      return Math.floor(Math.random() * 9);
-    }
-    function choixOrdi(position){
-     
-      var cases = document.getElementsByTagName("td");
-      var img = document.createElement("img");
-      img.src = "x.gif"
-      var Jouer = false;
-      while(Jouer == false){
-        switch(position){
-          case 1:
-          if (VerfiTab[0] ==0){
-            cases[0].appendChild(img);
-            VerfiTab[0]=1;
-            Jouer = true;
-          break
-          }
-         
-          case 2:
-          if (VerfiTab[1] == 0){
-            cases[1].appendChild(img);
-            VerfiTab[1]=1;
-            Jouer = true;
-            break
-          }
-          case 3:
-          if (VerfiTab[2] == 0){
-            cases[2].appendChild(img);
-            VerfiTab[2]=1;
-            Jouer = true;
-            break
-          }
-          
-          case 4:
-          if (VerfiTab[3] == 0){
-            cases[3].appendChild(img);
-            VerfiTab[3]=1;
-            Jouer = true;
-            break
-          }
-         
-          case 5:
-          if (VerfiTab[4] == 0){
-            cases[4].appendChild(img);
-            VerfiTab[4]=1;
-            Jouer = true;
-            break
-          }
-        
-          case 6:
-          if (VerfiTab[5] == 0){
-            cases[5].appendChild(img);
-              VerfiTab[5]=1;
-              Jouer = true;
-            break
-          }
-          
-          case 7:
-          if (VerfiTab[6] == 0){
-          
-            cases[6].appendChild(img);
-            VerfiTab[6]=1;
-            Jouer = true;
-            break
-            }
-         
-          case 8:
-          if (VerfiTab[7] == 0){
-            cases[7].appendChild(img);
-            VerfiTab[7]=1;
-            Jouer = true;
-            break
-            }
-          
-          case 9:
-          if (VerfiTab[8] == 0){
-            cases[8].appendChild(img);
-            VerfiTab[8]=1;
-            Jouer = true;
-            break
-            }
-         
-        }
-    }
-    }
-  function tour(i){
-    console.log(i)
-    //choixOrdi(getRandomInt());
-  }
-    function testVainqueur(){
-      var cases = document.getElementsByTagName("td");
-      var selectionImg = document.getElementsByTagName("img");
-      if (cases[0] == selectionImg[0]&&cases[1]== selectionImg[1]&&cases[2]== selectionImg[2]){
-        alert("gagné ! ")
-      }
-      else if (cases[3] == selectionImg[3]&&cases[4]== selectionImg[4]&&cases[5]== selectionImg[5]){
-        alert("gagné ! ")      }
-      else if (cases[6] == selectionImg[6]&&cases[7]== selectionImg[7]&&cases[8]== selectionImg[8]){
-        alert("gagné ! ")      }
-      else if (cases[0] == selectionImg[0]&&cases[3]== selectionImg[3]&&cases[6]== selectionImg[6]){
-        alert("gagné ! ")      }
-      else if (cases[1] == selectionImg[1]&&cases[4]== selectionImg[4]&&cases[7]== selectionImg[7]){
-        alert("gagné ! ")      }
-      else if (cases[2] == selectionImg[2]&&cases[5]== selectionImg[5]&&cases[8]== selectionImg[8]){
-        alert("gagné ! ")      }
-      else if (cases[0] == selectionImg[0]&&cases[4]== selectionImg[4]&&cases[8]== selectionImg[8]){
-        alert("gagné ! ")      }
-      else if (cases[2] == selectionImg[2]&&cases[4]== selectionImg[4]&&cases[6]== selectionImg[6]){
-        alert("gagné ! ")      }
-    }
-
-  </script>
   <body onload="Init()">
     <div id="morpion">
         <table id="grid">
@@ -156,7 +31,7 @@
           </tr>
         </table>
       <div id="scores">
-        <p id="nbMatches">1 manches</p>
+        <p id="nbMatches">0 manches</p>
         <p class="scores-title">Scores</p>
         <p id="player1" class="player1"><strong>O</strong> Joueur 1 : <span id="score1">0</span></p>
         <p id="player2" class="player2"><strong>X</strong> Joueur 2 : <span id="score2">0</span></p>  
