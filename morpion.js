@@ -13,7 +13,7 @@ var nbCoup = ligne * colonne;
 var joueHumain = false;
 var partieWinJoueur = 0;
 var partieWinIA = 0;
-
+var Gagne = false;
 
 function Init()
 {
@@ -29,6 +29,8 @@ function Init()
     for (var i=0; i < grilleElementTd.length; i++){
         grilleElementTd[i].addEventListener('click', CaseClicked)
     }
+    var rejouer = document.getElementById("rejouer");
+    rejouer.addEventListener("click", Rejouer);
 }
     
 function CaseClicked() { 
@@ -38,16 +40,27 @@ function CaseClicked() {
     }
     // Si vide : 
     else {
-        // On gère les différents tableaux
-        GridManage(this.caseNumber,joueurHumain);
-        // On ajoute l'image correspondant à l'humain à la case cliquée
-        this.appendChild(AjoutOX(joueurHumain))
-        // On fait jouer l'IA via la fonction : 
-        IAPlay();
-        TestWin(joueurHumain);
-        TestWin(joueurIA);
-       
+        if(Gagne == false){
+            // On gère les différents tableaux
+            GridManage(this.caseNumber,joueurHumain);
+            // On ajoute l'image correspondant à l'humain à la case cliquée
+            this.appendChild(AjoutOX(joueurHumain))
+            // On test si le joueur a gagné ou non
+            //TestWin(joueurHumain);
+            
+            if (!TestWin(joueurHumain)) { // (TestWin(joueurHumain == false))
+                // On fait jouer l'IA via la fonction : 
+                IAPlay();
+                // On test si l'IA a gagné ou non
+                TestWin(joueurIA);
+            }
+        }
+        else {
+            alert("La partie est finie ! Si vous voulez rejouer cliquer sur le bouton :)");
+        } 
     }
+    
+    
 }
 //fonction qui gèrent les tableaux
 function GridManage(caseNumber,player) {
@@ -93,84 +106,53 @@ function AjoutOX(joueur) {
     }
     return img;
 }
-function TestWin(player){
-    var Gagne = false;
-      if (grilleJoue[0] == player && grilleJoue[1]== player && grilleJoue[2]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
+function TestWin(player ){
+      if (grilleJoue[0] == player && grilleJoue[1]== player && grilleJoue[2]== player
+        || grilleJoue[3] == player && grilleJoue[4]== player && grilleJoue[5]== player
+        || grilleJoue[6] == player && grilleJoue[7]== player && grilleJoue[8]== player
+        || grilleJoue[0] == player && grilleJoue[3]== player && grilleJoue[6]== player
+        || grilleJoue[1] == player && grilleJoue[4]== player && grilleJoue[7]== player
+        || grilleJoue[2] == player && grilleJoue[5]== player && grilleJoue[8]== player
+        || grilleJoue[0] == player && grilleJoue[4]== player && grilleJoue[8]== player
+        || grilleJoue[2] == player && grilleJoue[4]== player && grilleJoue[6]== player
+        ){
+            if (player == 1) {
+                setTimeout(alert, 250,"Bravo ! Vous avez gagné ");
+                var scoreJ1 = document.getElementById("score1");
+                scoreJ1.innerHTML++
+                
+            }
+            
+            else {
+                setTimeout(alert, 250,"Vous avez perdu! ");
+                var scoreJ2 = document.getElementById("score2");
+                scoreJ2.innerHTML++
+                
+            } 
+            Gagne=true;
+            var manches = document.getElementById("nbManches");
+            manches.innerHTML++
         }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-      }
-      else if (grilleJoue[3] == player && grilleJoue[4]== player && grilleJoue[5]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-      }
-      else if (grilleJoue[6] == player && grilleJoue[7]== player && grilleJoue[8]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-      }
-      else if (grilleJoue[0] == player && grilleJoue[3]== player && grilleJoue[6]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-      }
-      else if (grilleJoue[1] == player && grilleJoue[4]== player && grilleJoue[7]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-      }
-      else if (grilleJoue[2] == player && grilleJoue[5]== player && grilleJoue[8]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-    }
-      else if (grilleJoue[0] == player && grilleJoue[4]== player && grilleJoue[8]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-    }
-      else if (grilleJoue[2] == player && grilleJoue[4]== player && grilleJoue[6]== player){
-        if (player == 1) {
-            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
-            Gagne = true;
-        }
-        else {
-        setTimeout(alert, 250,"GAME OVER! ")
-        }
-    }
-    if (Gagne != true) {
-        setTimeout(alert, 250,"EGALITE")
-    }
-   
-  
+        else if (grilleCasesRestantes.length == 0 ){
+            setTimeout(alert, 250,"Egalité dommage : recommencez ! :)");
+            Gagne=true;
+            var manches = document.getElementById("nbManches");
+            manches.innerHTML++
     
+        }
+      
+
+    return Gagne
+}
+function Rejouer(){
+    grilleJoue = new Array(0,0,0,0,0,0,0,0,0);
+    grilleCasesRestantes = new Array(0,1,2,3,4,5,6,7,8);
+    for (let i = 0; i < grilleElementTd.length; i++) {
+        if (grilleElementTd[i].lastChild) {
+            grilleElementTd[i].removeChild(grilleElementTd[i].lastChild);   
+        }
+    }
+    console.log(grilleJoue);
+    console.log(grilleCasesRestantes);
+    Gagne = false;
 }

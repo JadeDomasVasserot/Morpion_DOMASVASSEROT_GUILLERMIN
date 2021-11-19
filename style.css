@@ -65,3 +65,6 @@ body {
   button {
       padding: 10px;
   }
+  #refresh{
+    float :right;
+  }
