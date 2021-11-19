@@ -11,6 +11,9 @@ var imgIA = "x.gif";
 var nbCase = ligne * colonne;
 var nbCoup = ligne * colonne;
 var joueHumain = false;
+var partieWinJoueur = 0;
+var partieWinIA = 0;
+
 
 function Init()
 {
@@ -41,8 +44,9 @@ function CaseClicked() {
         this.appendChild(AjoutOX(joueurHumain))
         // On fait jouer l'IA via la fonction : 
         IAPlay();
-
-        TestWin();
+        TestWin(joueurHumain);
+        TestWin(joueurIA);
+       
     }
 }
 //fonction qui gèrent les tableaux
@@ -89,29 +93,84 @@ function AjoutOX(joueur) {
     }
     return img;
 }
-function TestWin(){
-      if (grilleJoue[0] == 2 && grilleJoue[1]== 2 && grilleJoue[2]== 2){
+function TestWin(player){
+    var Gagne = false;
+      if (grilleJoue[0] == player && grilleJoue[1]== player && grilleJoue[2]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
         setTimeout(alert, 250,"GAME OVER! ")
+        }
       }
-      else if (grilleJoue[3] == 2 && grilleJoue[4]== 2 && grilleJoue[5]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")
+      else if (grilleJoue[3] == player && grilleJoue[4]== player && grilleJoue[5]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
       }
-      else if (grilleJoue[6] == 2 && grilleJoue[7]== 2 && grilleJoue[8]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")
+      else if (grilleJoue[6] == player && grilleJoue[7]== player && grilleJoue[8]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
       }
-      else if (grilleJoue[0] == 2 && grilleJoue[3]== 2 && grilleJoue[6]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")
+      else if (grilleJoue[0] == player && grilleJoue[3]== player && grilleJoue[6]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
       }
-      else if (grilleJoue[1] == 2 && grilleJoue[4]== 2 && grilleJoue[7]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")
+      else if (grilleJoue[1] == player && grilleJoue[4]== player && grilleJoue[7]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
       }
-      else if (grilleJoue[2] == 2 && grilleJoue[5]== 2 && grilleJoue[8]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")      
+      else if (grilleJoue[2] == player && grilleJoue[5]== player && grilleJoue[8]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
     }
-      else if (grilleJoue[0] == 2 && grilleJoue[4]== 2 && grilleJoue[8]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")      
+      else if (grilleJoue[0] == player && grilleJoue[4]== player && grilleJoue[8]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
     }
-      else if (grilleJoue[2] == 2 && grilleJoue[4]== 2 && grilleJoue[6]== 2){
-       setTimeout(alert, 250,"GAME OVER! ")      
+      else if (grilleJoue[2] == player && grilleJoue[4]== player && grilleJoue[6]== player){
+        if (player == 1) {
+            setTimeout(alert, 250,"Bravo ! Vous avez gagné ")
+            Gagne = true;
+        }
+        else {
+        setTimeout(alert, 250,"GAME OVER! ")
+        }
     }
+    if (Gagne != true) {
+        setTimeout(alert, 250,"EGALITE")
+    }
+   
+  
+    
 }
