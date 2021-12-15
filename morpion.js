@@ -55,6 +55,7 @@ function CaseClicked() {
                 TestWin(joueurIA);
             }
         }
+        //si la partie est finie Gagne ==true alors on propose de rejouer
         else {
             alert("La partie est finie ! Si vous voulez rejouer cliquer sur le bouton :)");
         } 
@@ -106,7 +107,8 @@ function AjoutOX(joueur) {
     }
     return img;
 }
-function TestWin(player ){
+//on place en parametre le joueur (IA ou humain) 1 ou 2
+function TestWin(player ){//si il y a 3 pions aligné selon les 8 possibilités
       if (grilleJoue[0] == player && grilleJoue[1]== player && grilleJoue[2]== player
         || grilleJoue[3] == player && grilleJoue[4]== player && grilleJoue[5]== player
         || grilleJoue[6] == player && grilleJoue[7]== player && grilleJoue[8]== player
@@ -116,37 +118,39 @@ function TestWin(player ){
         || grilleJoue[0] == player && grilleJoue[4]== player && grilleJoue[8]== player
         || grilleJoue[2] == player && grilleJoue[4]== player && grilleJoue[6]== player
         ){
+            // on regarde qui a gagné grâce à ce if (player==1) alors le joueur à gagner 
             if (player == 1) {
                 setTimeout(alert, 250,"Bravo ! Vous avez gagné ");
                 var scoreJ1 = document.getElementById("score1");
-                scoreJ1.innerHTML++
+                scoreJ1.innerHTML++ //on incrémente le score de 1
                 
             }
-            
-            else {
+            // si player == 2 alors le bot à gagner
+            else if(player==2){
                 setTimeout(alert, 250,"Vous avez perdu! ");
                 var scoreJ2 = document.getElementById("score2");
-                scoreJ2.innerHTML++
+                scoreJ2.innerHTML++ // on incrémente le score de J2 à 1
                 
             } 
+            // on passe la variable a true ce qui termine la partie
             Gagne=true;
             var manches = document.getElementById("nbManches");
+            //et on incrémante le nombre de manches 
             manches.innerHTML++
-        }
+        }//si personne n'as gangné et qu'il ne reste plus de case alors il y a égalité
         else if (grilleCasesRestantes.length == 0 ){
             setTimeout(alert, 250,"Egalité dommage : recommencez ! :)");
+              // on passe la variable a true ce qui termine la partie
             Gagne=true;
             var manches = document.getElementById("nbManches");
             manches.innerHTML++
-    
         }
-      
-
-    return Gagne
+    return Gagne //on retourne le booléen 
 }
-function Rejouer(){
+function Rejouer(){ //la fonction rejouer réinitialise toutes les variables pour relancer une partie
     grilleJoue = new Array(0,0,0,0,0,0,0,0,0);
     grilleCasesRestantes = new Array(0,1,2,3,4,5,6,7,8);
+    //le for enleve toutes les images de la grille
     for (let i = 0; i < grilleElementTd.length; i++) {
         if (grilleElementTd[i].lastChild) {
             grilleElementTd[i].removeChild(grilleElementTd[i].lastChild);   
